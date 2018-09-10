@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>ช่องที่ {{detaildata.slotname}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+  <ion-list-header >อุปกรณ์ทั้งหมด</ion-list-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <div text-left style="margin-left: 30px">ชื่อของ</div>
+        </ion-col>
+        <ion-col col-4>
+          <div text-left style="margin-left: 10px">จำนวน</div>
+        </ion-col>
+      </ion-row>
+      <ion-item *ngFor="let datas of item">
+        <ion-row>
+          <ion-col col-8>
+            <div text-left style="margin-left: 10px;"><label style=" color: black">{{datas.nameitem}}</label></div>
+          </ion-col>
+          <ion-col col-4>
+              <input style="color: black;width: 50%; text-align: center"   [(ngModel)]="datas.quantity">
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-grid> 
+    </ion-list>
+
+   
+  <ion-footer>
+    <button  ion-button block (click)="borrow()">ยืนยันการยืม</button>
+  </ion-footer>
+
+</ion-content>
