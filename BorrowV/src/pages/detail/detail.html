@@ -1,0 +1,23 @@
+<!--
+  Generated template for the DetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>คุณจะเลือกหรือลบ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-label style="font-size:18px;" text-center><b>{{dataitems.nameitem}}</b></ion-label>
+    <ion-label style="font-size:18px;" text-center><b>{{dataitems.quantity}}</b></ion-label>
+    <!-- <ion-label style="font-size:18px;" text-center><b>{{dataitems.total}}</b></ion-label> -->
+  <button ion-button block  (click)="Edit(dataitems.id)">Edit</button>
+  <button ion-button block color="danger" (click)="delete()">Delete</button>
+
+</ion-content>
