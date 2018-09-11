@@ -12,23 +12,25 @@
 </ion-header>
 
 
-<ion-content padding>
-<form [formGroup]="myform">
-          <ion-label text-center><b>Username</b></ion-label>
-          <ion-input formControlName="username" [(ngModel)]="username" type="text" value=" "></ion-input>
-  <button ion-button secondary block [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
-</form>
-    <div style="font-size: 20px; text-align: center"><label ><ion-icon ios="ios-contact" md="md-contact"> </ion-icon>LOGIN</label></div>
+<ion-content padding class="backgound-color">
+
+  <div style="margin-top: 20%">
+    <div style="text-align: center">
+      <ion-icon style="font-size: 70px" ios="ios-contact" md="md-contact"></ion-icon>
+    </div>
+    <div style="font-size: 20px; text-align: center; margin-bottom: 20%"><label>LOGIN</label></div>
     <form [formGroup]="myform">
       <ion-item>
-        <ion-label floating>Username</ion-label>
-        
-        <ion-input formControlName="username" [(ngModel)]="username" type="text" value=" "></ion-input>
+
+        <ion-input  style="background-color: white;" placeholder="Username" formControlName="username" [(ngModel)]="username" type="text"></ion-input>
+
       </ion-item>
-      <div style="margin-top: 40px; text-align: center;">
-        <button style="width: 70%" ion-button secondary [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
+      <div style="margin-top: 60px; text-align: center;">
+        <button style="width: 70%" ion-button color="dark" round [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
       </div>
     </form>
+  </div>
+
 
 
 </ion-content>
