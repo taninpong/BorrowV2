@@ -7,6 +7,7 @@ import { LockerPage } from '../pages/locker/locker';
 import { KeylistPage } from '../pages/keylist/keylist';
 import { LoginPage } from '../pages/login/login';
 import { BorrowPage } from '../pages/borrow/borrow';
+import { ConfirmborrowPage } from '../pages/confirmborrow/confirmborrow';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +15,7 @@ import { BorrowPage } from '../pages/borrow/borrow';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = ConfirmborrowPage;
 
   pages: Array<{title: string, component: any}>;
 
