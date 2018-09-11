@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>รายการของที่ยืม ช่อง A1</ion-title>
+    <ion-title>รายการของที่ยืม ช่อง {{nameslot}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,24 +15,13 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
-      <h3>ดินสอ</h3>
-      <p>จำนวน 2 ชิ้น</p>
-    </ion-item>
-    <ion-item>
-      <h3>ยางลบ</h3>
-      <p>จำนวน 1 ชิ้น</p>
+    <ion-item *ngFor="let data of item">
+      <h3>{{data.nameitem}}</h3>
+      <p>จำนวน {{data.quantity}} ชิ้น</p>
     </ion-item>
   </ion-list>
-
-  <ion-footer>
-    <ion-toolbar>
-      <br>
-      <div text-center><p>รอการยืนยันจากพยาน</p></div>
-      <br>
-      <div text-center><img src="../../assets/imgs/Confirm.PNG" /></div>
-      
-    </ion-toolbar>
-  </ion-footer>
+  <div text-center><p>รอการยืนยันจากพยาน</p></div>
+      <div text-center><img src="{{genQrCode}}" /></div>
+ 
 
 </ion-content>

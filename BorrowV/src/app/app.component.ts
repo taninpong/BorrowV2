@@ -15,7 +15,7 @@ import { ConfirmborrowPage } from '../pages/confirmborrow/confirmborrow';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ConfirmborrowPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 

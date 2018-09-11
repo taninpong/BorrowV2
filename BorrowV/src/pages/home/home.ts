@@ -25,20 +25,24 @@ export class HomePage {
       //QR : "borrow;f66cd89f-f52c-45fe-ab6e-083078894434"
       var strQr = barcodeData.text;
       var checkborrow = null;
-      // strQr.startsWith("borrow")
-      var strReturn = strQr.startsWith("return");
-      console.log(strQr);
+      // // strQr.startsWith("borrow")
+      // // var strReturn = strQr.startsWith("return");
+      // console.log(strQr);
       //QR : "f66cd89f-f52c-45fe-ab6e-083078894434"
       // var stringQR = barcodeData.text;
-      var substrQR = strQr.substring(7);
+      var substrQR = strQr.split("|");
 
-      console.log("substring"+substrQR);
+      console.log("substring : "+substrQR[1]);
 
 if(checkborrow = strQr.startsWith("borrow") == true){
-  this.navCtrl.push(BorrowPage, { iditem: substrQR });
+  this.navCtrl.push(BorrowPage, { iditem: substrQR[1] });
 }else if(checkborrow = strQr.startsWith("return") == true){
-  this.navCtrl.push(LoginPage);
-}else {}
+  
+
+}else if(checkborrow = strQr.startsWith("guarantee") == true){
+  this.navCtrl.push(ConfirmborrowPage, { iditem: substrQR[1] });
+  console.log("substring ssss: "+substrQR[1]);   
+}
 
       // if(substrQR == ";"){
       //   this.navCtrl.push(ManageitemPage, { LockerId: substrQR });

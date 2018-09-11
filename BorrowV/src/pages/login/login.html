@@ -13,22 +13,25 @@
 
 
 <ion-content padding>
-<form [formGroup]="myform">
+  <!-- <form [formGroup]="myform">
           <ion-label text-center><b>Username</b></ion-label>
           <ion-input formControlName="username" [(ngModel)]="username" type="text" value=" "></ion-input>
   <button ion-button secondary block [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
-</form>
-    <div style="font-size: 20px; text-align: center"><label ><ion-icon ios="ios-contact" md="md-contact"> </ion-icon>LOGIN</label></div>
-    <form [formGroup]="myform">
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        
-        <ion-input formControlName="username" [(ngModel)]="username" type="text" value=" "></ion-input>
-      </ion-item>
-      <div style="margin-top: 40px; text-align: center;">
-        <button style="width: 70%" ion-button secondary [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
-      </div>
-    </form>
+</form> -->
+  <div style="font-size: 20px; text-align: center"><label>
+      <ion-icon ios="ios-contact" md="md-contact"> </ion-icon>LOGIN
+    </label></div>
+  <form [formGroup]="myform">
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+
+      <ion-input formControlName="username" [(ngModel)]="username" type="text" value=" "></ion-input>
+    </ion-item>
+    <div style="margin-top: 40px; text-align: center;">
+      <button style="width: 70%" ion-button secondary [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
+    </div>
+  </form>
+
 
 
 </ion-content>
