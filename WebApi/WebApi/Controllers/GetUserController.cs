@@ -59,11 +59,11 @@ namespace WebApi.Controllers
             {
 
                 var history = Collection.Find(x => x.Id == id).FirstOrDefault();
-                if(history.Borrowname == witnessname)
+                if (history.Borrowname == witnessname)
                 {
                     return false;
                 }
-                
+
                 history.WitnessName = witnessname;
                 history.Dateborrowitem = DateTime.UtcNow;
                 Collection.ReplaceOne(it => it.Id == id, history);
@@ -94,7 +94,42 @@ namespace WebApi.Controllers
         }
 
 
+        [HttpPost("{id}/{usernameborrow}/{witnessname}")]
+        public bool SendBackItem(string id, string usernameborrow, string witnessname)
+        {
+            try
+            {
+                var history = Collection.Find(x => x.Id == id).FirstOrDefault();
+                //if (!(history.Borrowname == witnessname || history.WitnessName == witnessname || history.Borrowname == usernameborrow || history.WitnessName == usernameborrow))
+                //{
+                //    return false;
+                //}
+                //else 
+                if (!((history.Borrowname == usernameborrow || history.WitnessName == usernameborrow) && usernameborrow != witnessname))
+                {
+                    return false;
+                }
 
+                history.WitnessName = witnessname;
+                history.Datebackitem = DateTime.UtcNow;
+                Collection.ReplaceOne(it => it.Id == id, history);
+                var slot = SlotCollection.Find(x => x.Id == history.SlotId).FirstOrDefault();
+                foreach (var item in history.Item)
+                {
+                    var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
+                    updated.quantity += item.quantity;
+                }
+                SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
 
     }
 }
