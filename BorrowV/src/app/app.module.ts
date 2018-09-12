@@ -26,6 +26,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { DetailPage } from '../pages/detail/detail';
 import { AddlockerPage } from '../pages/addlocker/addlocker';
 import { DetailitemborrowPage } from '../pages/detailitemborrow/detailitemborrow';
+import { ConfirmreturnPage } from '../pages/confirmreturn/confirmreturn';
 
 
 
@@ -52,7 +53,8 @@ import { DetailitemborrowPage } from '../pages/detailitemborrow/detailitemborrow
     DetailPage,
     AddlockerPage,
     DetailsendbackPage,
-    DetailitemborrowPage
+    DetailitemborrowPage,
+    ConfirmreturnPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import { DetailitemborrowPage } from '../pages/detailitemborrow/detailitemborrow
     DetailPage,
     AddlockerPage,
     DetailsendbackPage,
-    DetailitemborrowPage
+    DetailitemborrowPage,
+    ConfirmreturnPage
 
   ],
   providers: [

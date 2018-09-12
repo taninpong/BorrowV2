@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * Generated class for the DetailsendbackPage page.
@@ -14,12 +15,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'detailsendback.html',
 })
 export class DetailsendbackPage {
+  iddata: any;
+  detaildata: any;
+  genQrCode: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient) {
+    this.iddata = navParams.get("iddata");
+    console.log("DDDDD+"+this.iddata);
+    this.genQrCode = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=guaranteereturn|"+this.iddata;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailsendbackPage');
+  ionViewDidEnter() {
+    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/"+this.iddata)
+      .subscribe((data: any) => {
+        this.detaildata = data.item
+        console.log("xyz"+JSON.stringify(this.detaildata));
+      },
+        error => {
+          alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
+        });
   }
+
+  
 
 }

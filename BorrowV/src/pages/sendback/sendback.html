@@ -16,11 +16,8 @@
 <ion-content padding>
 
 
-<ion-row>
-  <ion-col text-center>
-    ปากกา จำนวน<label>__</label> แท่ง<br>
-    ปากกา จำนวน<label>__</label> แท่ง<br>
-<button ion-button (click)="scanqr()">คืน</button>
-  </ion-col>
+<ion-row  *ngFor="let data of detaildata">
+    {{data.nameitem}}<label>{{data.quantity}}</label> แท่ง<br>
 </ion-row>
+<button ion-button block (click)="scanqr(iddata)">คืน</button>
 </ion-content>

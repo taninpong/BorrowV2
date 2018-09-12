@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserLogin } from '../../app/Model';
 
 /**
- * Generated class for the ConfirmborrowPage page.
+ * Generated class for the ConfirmreturnPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,44 +12,40 @@ import { UserLogin } from '../../app/Model';
 
 @IonicPage()
 @Component({
-  selector: 'page-confirmborrow',
-  templateUrl: 'confirmborrow.html',
+  selector: 'page-confirmreturn',
+  templateUrl: 'confirmreturn.html',
 })
-export class ConfirmborrowPage {
-  iditem: any;
-  detaildata: string;
+export class ConfirmreturnPage {
+  username: any;
+  iditem: string;
   detailitem: any;
-  username: string;
-
+  detaildata: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
     this.iditem = navParams.data.iditem;
     console.log("DataSend :" + JSON.stringify(this.iditem));
   }
-  // 
 
-
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad ConfirmreturnPage');
+  // }
   ionViewDidEnter() {
     this.username = UserLogin.userlogin;
     this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/" + this.iditem)
       .subscribe((data: any) => {
         this.detailitem = data.item
         this.detaildata = data.borrowname
-        console.log("Lockker" +JSON.stringify(data));
+        console.log("Datanaja : " +JSON.stringify(data));
+        console.log("Username : "  +this.username);
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
         });
   }
-
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad ConfirmborrowPage');
-  // }
-  // /api/GetUser/ConfirmBorrow/{id}/{witnessname}
   payan() {
     let option = { "headers": { "Content-Type": "application/json" } };
     // this.callpost = { id: "8", nameitem: "abcde", quantity: 12 };
-    this.http.post("https://demoionic2.azurewebsites.net/api/GetUser/ConfirmBorrow/" + this.iditem + "/" + this.username,
+    this.http.post("https://demoionic2.azurewebsites.net/api/GetUser/SendBackItem/"+this.iditem+"/"+this.detaildata+"/"+this.username,
       option).subscribe((result: any) => {
         this.navCtrl.popToRoot()
         console.log("xxxx" + result);
@@ -58,4 +54,3 @@ export class ConfirmborrowPage {
       });
   }
 }
-

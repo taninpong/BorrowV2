@@ -9,6 +9,7 @@ import { LoginPage } from '../login/login';
 import { HttpClient } from '@angular/common/http';
 import { DetailborrowPage } from '../detailborrow/detailborrow';
 import { DetailitemborrowPage } from '../detailitemborrow/detailitemborrow';
+import { ConfirmreturnPage } from '../confirmreturn/confirmreturn';
 
 @Component({
   selector: 'page-home',
@@ -62,10 +63,14 @@ export class HomePage {
         this.navCtrl.push(BorrowPage, { iditem: substrQR[1] });
       } else if (checkborrow = strQr.startsWith("return") == true) {
 
-      } else if (checkborrow = strQr.startsWith("guarantee") == true) {
+      } else if (checkborrow = strQr.startsWith("guaranteeborrow") == true) {
         this.navCtrl.push(ConfirmborrowPage, { iditem: substrQR[1] });
         console.log("substring ssss: " + substrQR[1]);
+      }else if(checkborrow = strQr.startsWith("guaranteereturn") == true){
+        this.navCtrl.push(ConfirmreturnPage, { iditem: substrQR[1] });
       }
+
+
 
      
     }).catch(err => {

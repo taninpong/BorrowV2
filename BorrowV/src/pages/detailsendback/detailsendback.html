@@ -13,14 +13,14 @@
 </ion-header>
 
 <ion-content padding>
-  A <label>รายการ 1</label> <br>
-  B <label>รายการ 2</label> <br>
-  C <label>รายการ 3</label>
+  <ion-row  *ngFor="let data of detaildata">
+    {{data.nameitem}}<label>{{data.quantity}}</label> แท่ง<br>
+</ion-row>
   <ion-row>
   <ion-col text-center>
-    <h3>ยืนยันการคืนกับพยาน</h3>
+    <h3>พยานนน</h3>
     <br>
-    <ion-img width="150" height="150" src="../assets/imgs/qr1.jpg"></ion-img>
+    <ion-img width="150" height="150" src="{{genQrCode}}"></ion-img>
   </ion-col>
 </ion-row>
 

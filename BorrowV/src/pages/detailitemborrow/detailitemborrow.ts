@@ -16,18 +16,18 @@ import { SendbackPage } from '../sendback/sendback';
   templateUrl: 'detailitemborrow.html',
 })
 export class DetailitemborrowPage {
-  data: any;
+  datas: any;
   detaildata: any;
   dataid: any;
   ckid:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
-    this.data = navParams.get("dataid");
-    console.log("data" + this.data);
+    this.datas = navParams.get("dataid");
+    console.log("data" + this.datas);
   }
 
 
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/" + this.data)
+    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/" + this.datas)
       .subscribe((data: any) => {
         this.dataid = data.id
         this.detaildata = data.item
