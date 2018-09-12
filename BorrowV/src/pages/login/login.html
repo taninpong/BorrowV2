@@ -20,17 +20,13 @@
     </div>
     <div style="font-size: 20px; text-align: center; margin-bottom: 20%"><label>LOGIN</label></div>
     <form [formGroup]="myform">
-      <ion-item>
-
-        <ion-input  style="background-color: white;" placeholder="Username" formControlName="username" [(ngModel)]="username" type="text"></ion-input>
-
-      </ion-item>
-      <div style="margin-top: 60px; text-align: center;">
+      <div style="text-align: center">
+        <ion-input placeholder="Username" formControlName="username" [(ngModel)]="username" type="text"></ion-input>
+      </div>
+      <div style="margin-top: 30px; text-align: center;">
         <button style="width: 70%" ion-button color="dark" round [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
       </div>
     </form>
   </div>
-
-
 
 </ion-content>

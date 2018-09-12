@@ -25,6 +25,7 @@ import { DetailsendbackPage } from '../pages/detailsendback/detailsendback';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { DetailPage } from '../pages/detail/detail';
 import { AddlockerPage } from '../pages/addlocker/addlocker';
+import { DetailitemborrowPage } from '../pages/detailitemborrow/detailitemborrow';
 
 
 
@@ -51,6 +52,7 @@ import { AddlockerPage } from '../pages/addlocker/addlocker';
     DetailPage,
     AddlockerPage,
     DetailsendbackPage,
+    DetailitemborrowPage
   ],
   imports: [
     BrowserModule,
@@ -80,6 +82,8 @@ import { AddlockerPage } from '../pages/addlocker/addlocker';
     DetailPage,
     AddlockerPage,
     DetailsendbackPage,
+    DetailitemborrowPage
+
   ],
   providers: [
     StatusBar,
