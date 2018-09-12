@@ -27,7 +27,7 @@ namespace WebApi.Controllers
 
 
         // GET api/values
-        [HttpGet]
+        [HttpGet("{username}")]
         public IEnumerable<History> ListBorrow(string username)
         {
             var data = Collection.Find(x => (x.Borrowname == username || x.WitnessName == username)
@@ -59,11 +59,11 @@ namespace WebApi.Controllers
             {
 
                 var history = Collection.Find(x => x.Id == id).FirstOrDefault();
-                if(history.Borrowname == witnessname)
+                if (history.Borrowname == witnessname)
                 {
                     return false;
                 }
-                
+
                 history.WitnessName = witnessname;
                 history.Dateborrowitem = DateTime.UtcNow;
                 Collection.ReplaceOne(it => it.Id == id, history);
@@ -86,7 +86,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/values
-        [HttpGet]
+        [HttpGet("{id}")]
         public History GetBorrow(string id)
         {
             var data = Collection.Find(x => (x.Id == id)).FirstOrDefault();
@@ -94,7 +94,49 @@ namespace WebApi.Controllers
         }
 
 
+        [HttpPost("{id}/{usernameborrow}/{witnessname}")]
+        public bool SendBackItem(string id, string usernameborrow, string witnessname)
+        {
+            try
+            {
+                var history = Collection.Find(x => x.Id == id).FirstOrDefault();
+                //if (!(history.Borrowname == witnessname || history.WitnessName == witnessname || history.Borrowname == usernameborrow || history.WitnessName == usernameborrow))
+                //{
+                //    return false;
+                //}
+                //else 
+                if (!((history.Borrowname == usernameborrow || history.WitnessName == usernameborrow) && usernameborrow != witnessname))
+                {
+                    return false;
+                }
+                history.SendbackUsername = usernameborrow;
+                history.WitnessSendback = witnessname;
+                history.Datebackitem = DateTime.UtcNow;
+                Collection.ReplaceOne(it => it.Id == id, history);
+                var slot = SlotCollection.Find(x => x.Id == history.SlotId).FirstOrDefault();
+                foreach (var item in history.Item)
+                {
+                    var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
+                    updated.quantity += item.quantity;
+                }
+                SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
 
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
+
+        //[HttpGet]
+        //public IEnumerable<History> ListHistory()
+        //{
+            
+        //    //return " ";
+        //}
 
     }
 }
