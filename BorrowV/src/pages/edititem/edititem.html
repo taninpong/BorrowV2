@@ -7,24 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Edititem</ion-title>
+    <ion-title text-center></ion-title>
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-    <ion-grid>
-        <ion-row>
-          <label floating>ของ :</label>
-          <!-- <ion-input type="text" [(ngModel)]="data.nameitem"></ion-input> -->
-          <ion-input style="color: black" type="text" [(ngModel)]="dataDetail.nameitem"></ion-input>
-        </ion-row>
-        <ion-row>
-          <ion-label floating>จำนวน :</ion-label>
-          <ion-input type="text" style="color: black" [(ngModel)]="dataDetail.quantity" ></ion-input>
-        </ion-row>
-        <br>
-        <button ion-button block (click)="Edit()">Confirm</button>
-      </ion-grid>
+<ion-list-header style="font-size:18px;" text-center><b>แก้ไขสิ่งของ</b><br><ion-icon style="font-size: 30px;" ios="ios-build" md="md-build"></ion-icon></ion-list-header>
+<ion-grid>
+  <ion-row>
+  <ion-col col-8>
+      <ion-label text-center><b>ชื่อของ</b></ion-label>
+    </ion-col>
+    <ion-col col-4>
+     <ion-label text-center><b>จำนวน</b></ion-label>
+    </ion-col>
+    <ion-col col-8>
+     <ion-input type="text" [(ngModel)]="dataDetail.nameitem"></ion-input>
+    </ion-col>
+    <ion-col col-4>
+     <ion-input type="text" style="color: black" [(ngModel)]="dataDetail.quantity" ></ion-input>
+    </ion-col>
+     </ion-row>
+</ion-grid>
+<button ion-button round block (click)="Edit()">ยืนยัน</button>
 </ion-content>

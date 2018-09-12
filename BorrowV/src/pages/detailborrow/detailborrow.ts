@@ -31,7 +31,7 @@ export class DetailborrowPage {
     // console.log("slotname : "+JSON.stringify(this.nameslot));
     // console.log("slotname : "+JSON.stringify(this.item));
     // console.log("IDIDIDID : "+this.itemid.id);
-    this.genQrCode = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=guarantee|"+this.itemid.id;
+    this.genQrCode = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=guaranteeborrow|"+this.itemid.id;
   }
 
   ionViewDidLoad() {

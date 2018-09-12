@@ -1,0 +1,60 @@
+<!--
+  Generated template for the ConfirmreturnPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Confirmreturn</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div style="text-align: center">
+    <h2>รายการที่ต้องการคืน</h2>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-9>
+        <label>รายการ</label>
+      </ion-col>
+      <ion-col col-3>
+        <label>จำนวน</label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid>
+    <div *ngFor="let data of detailitem">
+    
+      <ion-row >
+        <ion-col col-9>
+          <label>{{data.nameitem}}</label>
+        </ion-col>
+        <ion-col col-3>
+          <label>{{data.quantity}}</label>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+  <ion-grid >
+    <ion-row>
+      <ion-col col-12>
+        <label>ชื่อผู้ยืม :</label> <label>{{detaildata}}</label>
+      </ion-col>
+      <ion-col col-12>
+        <label>ชื่อพยาน :</label> <label name="username">{{username}}</label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div style="text-align: center"><button ion-button block (click)="payan()">ยืนยันการเป็นพยาน</button></div>
+
+</ion-content>

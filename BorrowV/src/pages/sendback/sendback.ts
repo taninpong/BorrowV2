@@ -26,49 +26,50 @@ export class SendbackPage {
     console.log("xxxx"+this.iddata);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SendbackPage');
-  }
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad SendbackPage');
+  // }
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/ListBorrow/"+this.iddata)
+    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/"+this.iddata)
       .subscribe((data: any) => {
         this.detaildata = data.item
-        console.log("xyz"+data);
+        console.log("xyz"+JSON.stringify(this.detaildata));
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
         });
   }
 
-  scanqr(){
-    this.barcodeScanner.scan().then(barcodeData => {
-      //QR : "borrow;f66cd89f-f52c-45fe-ab6e-083078894434"
-      var strQr = barcodeData.text;
-      var checkborrow = null;
-      // // strQr.startsWith("borrow")
-      // // var strReturn = strQr.startsWith("return");
-      // console.log(strQr);
-      //QR : "f66cd89f-f52c-45fe-ab6e-083078894434"
-      // var stringQR = barcodeData.text;
-      var substrQR = strQr.split("|");
-
-      console.log("substring : " + substrQR[1]);
-
-      if (checkborrow = strQr.startsWith("borrow") == true) {
-        // this.navCtrl.push(BorrowPage, { iditem: substrQR[1] });
-      } else if (checkborrow = strQr.startsWith("return") == true) {
-
-      } else if (checkborrow = strQr.startsWith("guarantee") == true) {
-        this.navCtrl.push(DetailsendbackPage);
-        // this.navCtrl.push(ConfirmborrowPage, { iditem: substrQR[1] });
-        console.log("substring ssss: " + substrQR[1]);
-      }
-
-     
-    }).catch(err => {
-      console.log('Error', err);
+  scanqr(id){
+    this.navCtrl.push(DetailsendbackPage,{
+      iddata: id
     });
-    this.navCtrl.push(HomePage);
+    // this.barcodeScanner.scan().then(barcodeData => {
+    //   //QR : "borrow;f66cd89f-f52c-45fe-ab6e-083078894434"
+    //   var strQr = barcodeData.text;
+    //   var checkborrow = null;
+    //   // // strQr.startsWith("borrow")
+    //   // // var strReturn = strQr.startsWith("return");
+    //   // console.log(strQr);
+    //   //QR : "f66cd89f-f52c-45fe-ab6e-083078894434"
+    //   // var stringQR = barcodeData.text;
+    //   var substrQR = strQr.split("|");
+
+    //   console.log("substring : " + substrQR[1]);
+
+    //   if (checkborrow = strQr.startsWith("borrow") == true) {
+    //     // this.navCtrl.push(BorrowPage, { iditem: substrQR[1] });
+    //   } else if (checkborrow = strQr.startsWith("return") == true) {
+
+    //   } else if (checkborrow = strQr.startsWith("guarantee") == true) {
+    //     this.navCtrl.push(DetailsendbackPage);
+    //     // this.navCtrl.push(ConfirmborrowPage, { iditem: substrQR[1] });
+    //     console.log("substring ssss: " + substrQR[1]);
+    //   }
+    // }).catch(err => {
+    //   console.log('Error', err);
+    // });
+    // this.navCtrl.push(HomePage);
   }
 
 }
