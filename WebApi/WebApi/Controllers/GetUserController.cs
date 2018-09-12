@@ -28,7 +28,7 @@ namespace WebApi.Controllers
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<History> ShowBorrow(string username)
+        public IEnumerable<History> ListBorrow(string username)
         {
             var data = Collection.Find(x => (x.Borrowname == username || x.WitnessName == username)
                 && x.Dateborrowitem != null && x.Datebackitem == null
@@ -85,12 +85,13 @@ namespace WebApi.Controllers
 
         }
 
-        //[HttpGet]
-        //public IEnumerable<History> ShowBorrow()
-        //{
-        //    var data = Collection.Find(x => true).ToList();
-        //    return data;
-        //}
+        // GET api/values
+        [HttpGet]
+        public History GetBorrow(string id)
+        {
+            var data = Collection.Find(x => (x.Id == id)).FirstOrDefault();
+            return data;
+        }
 
 
 
