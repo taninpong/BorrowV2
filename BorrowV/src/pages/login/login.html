@@ -21,16 +21,17 @@
   <div style="font-size: 20px; text-align: center"><label>
       <ion-icon ios="ios-contact" md="md-contact"> </ion-icon>LOGIN
     </label></div>
-  <form [formGroup]="myform">
+  <form novalidate  [formGroup]="signupform">
     <ion-item>
       <ion-label floating>Username</ion-label>
 
-      <ion-input formControlName="username" [(ngModel)]="username" type="text" value=" "></ion-input>
+      <ion-input type="text" [(ngModel)]="userData.username" name="input" formControlName="username" [class.error1]="!signupform.controls.username.valid"></ion-input>
     </ion-item>
     <div style="margin-top: 40px; text-align: center;">
-      <button style="width: 70%" ion-button secondary [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
+      <button type="submit" ion-button block color="primary" [disabled]="signupform.invalid" (click)="login()">OK</button>
     </div>
   </form>
+  
 
 
 

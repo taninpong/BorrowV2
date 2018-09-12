@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { UserLogin } from '../../app/Model';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,16 +17,20 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  signupform: FormGroup;
   myform: FormGroup;
-   
+  userData = { "username": ""};
+
+  
   
     logForm(form) {
     console.log(form.value)
   }
   username: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.myform = new FormGroup({
-    username: new FormControl('',[Validators.required,Validators.maxLength(1)])
+    
+    this.signupform = new FormGroup({
+      username: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)]),
     });
   }
   
@@ -36,7 +40,7 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   login(){
-    UserLogin.userlogin=this.username;
+    UserLogin.userlogin=this.userData.username;
     this.navCtrl.setRoot(HomePage);
   }
 
