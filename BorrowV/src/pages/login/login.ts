@@ -20,8 +20,6 @@ export class LoginPage {
   signupform: FormGroup;
   myform: FormGroup;
   userData = { "username": ""};
-
-  
   
     logForm(form) {
     console.log(form.value)
@@ -30,7 +28,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
     this.signupform = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)]),
+      username: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-1]*'), Validators.minLength(4), Validators.maxLength(30)]),
     });
   }
   
