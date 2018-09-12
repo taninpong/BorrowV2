@@ -12,27 +12,22 @@
 </ion-header>
 
 
-<ion-content padding>
-  <!-- <form [formGroup]="myform">
-          <ion-label text-center><b>Username</b></ion-label>
-          <ion-input formControlName="username" [(ngModel)]="username" type="text" value=" "></ion-input>
-  <button ion-button secondary block [disabled]="myform.controls.username.valid" (click)="login()">Login</button>
-</form> -->
-  <div style="font-size: 20px; text-align: center"><label>
-      <ion-icon ios="ios-contact" md="md-contact"> </ion-icon>LOGIN
-    </label></div>
-  <form novalidate  [formGroup]="signupform">
-    <ion-item>
-      <ion-label floating>Username</ion-label>
+<ion-content padding class="backgound-color">
 
-      <ion-input type="text" [(ngModel)]="userData.username" name="input" formControlName="username" [class.error1]="!signupform.controls.username.valid"></ion-input>
-    </ion-item>
-    <div style="margin-top: 40px; text-align: center;">
-      <button type="submit" ion-button block color="primary" [disabled]="signupform.invalid" (click)="login()">OK</button>
+  <div style="margin-top: 20%">
+    <div style="text-align: center">
+      <ion-icon style="font-size: 70px" ios="ios-contact" md="md-contact"></ion-icon>
     </div>
-  </form>
-  
-
+    <div style="font-size: 20px; text-align: center; margin-bottom: 20%"><label>LOGIN</label></div>
+    <form novalidate [formGroup]="signupform">
+      <div style="text-align: center">
+        <ion-input placeholder="Username" type="text" [(ngModel)]="userData.username" name="input" formControlName="username" [class.error1]="!signupform.controls.username.valid"></ion-input>
+      </div>
+      <div style="margin-top: 30px; text-align: center;">
+        <button style="width: 70%" ion-button color="dark" round [disabled]="signupform.invalid" (click)="login()">Login</button>
+      </div>
+    </form>
+  </div>
 
 
 </ion-content>

@@ -20,8 +20,6 @@ export class LoginPage {
   signupform: FormGroup;
   myform: FormGroup;
   userData = { "username": ""};
-
-  
   
     logForm(form) {
     console.log(form.value)
