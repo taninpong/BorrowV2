@@ -31,10 +31,10 @@ export class HomePage {
 
 
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/ListBorrow?username=" + this.username)
+    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/ListBorrow/" + this.username)
       .subscribe((data: any) => {
         this.detaildata = data
-        // console.log("data" + JSON.stringify(data));
+         console.log("data" + JSON.stringify(data));
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
@@ -67,17 +67,7 @@ export class HomePage {
         console.log("substring ssss: " + substrQR[1]);
       }
 
-      // if(substrQR == ";"){
-      //   this.navCtrl.push(ManageitemPage, { LockerId: substrQR });
-      // }else{
-      //   this.navCtrl.push(DetailsendbackPage, { LockerId: substrQR });
-      // }
-      // else if(strReturn == true){
-
-      // }
-      // if (barcodeData.text === "Confirm") {
-      //   this.navCtrl.push(ConfirmborrowPage);
-      // }
+     
     }).catch(err => {
       console.log('Error', err);
     });

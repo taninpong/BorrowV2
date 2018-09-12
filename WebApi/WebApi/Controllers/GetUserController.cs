@@ -27,7 +27,7 @@ namespace WebApi.Controllers
 
 
         // GET api/values
-        [HttpGet]
+        [HttpGet("{username}")]
         public IEnumerable<History> ListBorrow(string username)
         {
             var data = Collection.Find(x => (x.Borrowname == username || x.WitnessName == username)
@@ -86,7 +86,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/values
-        [HttpGet]
+        [HttpGet("{id}")]
         public History GetBorrow(string id)
         {
             var data = Collection.Find(x => (x.Id == id)).FirstOrDefault();
@@ -109,8 +109,8 @@ namespace WebApi.Controllers
                 {
                     return false;
                 }
-
-                history.WitnessName = witnessname;
+                history.SendbackUsername = usernameborrow;
+                history.WitnessSendback = witnessname;
                 history.Datebackitem = DateTime.UtcNow;
                 Collection.ReplaceOne(it => it.Id == id, history);
                 var slot = SlotCollection.Find(x => x.Id == history.SlotId).FirstOrDefault();
@@ -130,6 +130,13 @@ namespace WebApi.Controllers
             }
 
         }
+
+        //[HttpGet]
+        //public IEnumerable<History> ListHistory()
+        //{
+            
+        //    //return " ";
+        //}
 
     }
 }

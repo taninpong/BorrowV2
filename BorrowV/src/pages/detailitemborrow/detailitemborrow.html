@@ -10,6 +10,16 @@
     <ion-title>detailitemborrow</ion-title>
   </ion-navbar>
 
+  <ion-fab top right edge style="margin-top: 25px">
+    <button ion-fab mini color="secondary" ><ion-icon name="add"></ion-icon></button>
+  <ion-fab-list>
+  <button ion-fab (click)="sendback(dataid)"><label>คืน</label></button>
+    <!--  <button ion-fab (click)="deleteitem()"><label>ลบ</label></button>
+    <button ion-fab (click)="edititem()"><label>แก้ไข</label></button>
+    <button ion-fab (click)="tranferitem()"><label>ย้าย</label></button>  -->
+  </ion-fab-list>
+</ion-fab>
+
 </ion-header>
 
 
