@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Getdata } from '../../app/Model';
 
@@ -19,7 +19,7 @@ export class DeleteitemPage {
   detaildata: any[];
   data: Getdata;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient,private alertCtrl: AlertController) {
 
     this.http.get("https://demoionic2.azurewebsites.net/api/Manageitem/Getitem")
       .subscribe((data: any) => {
@@ -34,6 +34,7 @@ export class DeleteitemPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeleteitemPage/');
   }
+  
   delete() {
     let option = { "headers": { "Content-Type": "application/json" } };
     // var data2 = data.nameitem.ischeck;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
@@ -42,6 +43,7 @@ export class DeleteitemPage {
       option).subscribe((result: any) => {
         this.navCtrl.pop()
         console.log(result);
+
       }, error => {
         console.log(error);
       });

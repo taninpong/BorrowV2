@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title text-center>คุณจะเลือกหรือลบ</ion-title>
+    <ion-title text-center>คุณจะแก้ไขหรือลบ</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,23 +16,23 @@
 <ion-content padding>
 <ion-grid>
   <ion-row>
-  <ion-col col-10>
+  <ion-col col-8>
       <ion-label text-center><b>ชื่อของ</b></ion-label>
     </ion-col>
-    <ion-col col-2>
+    <ion-col col-4>
      <ion-label text-center><b>จำนวน</b></ion-label>
     </ion-col>
-    <ion-col col-10>
+    <ion-col col-8>
       <button style=" width: 90%; height:90%" ion-button color="dark" round>{{dataitems.nameitem}}</button>
     </ion-col>
-    <ion-col col-2>
-     <ion-label text-center>{{dataitems.quantity}}</ion-label>
+    <ion-col col-4>
+     <button style=" width: 90%; height:90%" ion-button color="dark" round>{{dataitems.quantity}}</button>
     </ion-col>
      </ion-row>
 </ion-grid>
 
     <!-- <ion-label style="font-size:18px;" text-center><b>{{dataitems.total}}</b></ion-label> -->
-  <button ion-button block  (click)="Edit(dataitems.id)">Edit</button>
-  <button ion-button block color="danger" (click)="delete()">Delete</button>
+  <button ion-button block (click)="Edit(dataitems.id)" round>Edit</button>
+  <button ion-button block color="danger" (click)="delete()" round>Delete</button>
 
 </ion-content>
