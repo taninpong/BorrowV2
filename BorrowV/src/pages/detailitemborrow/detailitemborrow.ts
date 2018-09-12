@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { SendbackPage } from '../sendback/sendback';
 
 /**
  * Generated class for the DetailitemborrowPage page.
@@ -17,22 +18,32 @@ import { HttpClient } from '@angular/common/http';
 export class DetailitemborrowPage {
   data: any;
   detaildata: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient) {
+  dataid: any;
+  ckid:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
     this.data = navParams.get("dataid");
-    console.log("data"+this.data);
+    console.log("data" + this.data);
   }
 
-  
+
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow?id=" + this.data)
+    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/" + this.data)
       .subscribe((data: any) => {
+        this.dataid = data.id
         this.detaildata = data.item
         console.log(data);
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
         });
+  }
+
+  sendback(id) {
+    this.navCtrl.push(SendbackPage, {
+      dataid: id
+      
+    });
+    console.log("IDsendback : "+this.dataid);
   }
 
 }

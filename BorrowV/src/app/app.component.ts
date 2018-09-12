@@ -8,6 +8,7 @@ import { KeylistPage } from '../pages/keylist/keylist';
 import { LoginPage } from '../pages/login/login';
 import { BorrowPage } from '../pages/borrow/borrow';
 import { ConfirmborrowPage } from '../pages/confirmborrow/confirmborrow';
+import { ManageitemPage } from '../pages/manageitem/manageitem';
 
 @Component({
   templateUrl: 'app.html'
