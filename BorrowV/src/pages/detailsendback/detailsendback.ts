@@ -26,10 +26,10 @@ export class DetailsendbackPage {
   }
 
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/"+this.iddata)
+    this.http.get("https://demoionic2.azurewebsites.net/api/History/GetBorrow/"+this.iddata)
       .subscribe((data: any) => {
         this.detaildata = data.item
-        console.log("xyz"+JSON.stringify(this.detaildata));
+        console.log("item in payan : "+JSON.stringify(this.detaildata));
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)

@@ -31,7 +31,7 @@ export class ConfirmborrowPage {
 
   ionViewDidEnter() {
     this.username = UserLogin.userlogin;
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/" + this.iditem)
+    this.http.get("https://demoionic2.azurewebsites.net/api/History/GetBorrow/" + this.iditem)
       .subscribe((data: any) => {
         this.detailitem = data.item
         this.detaildata = data.borrowname
@@ -49,7 +49,7 @@ export class ConfirmborrowPage {
   payan() {
     let option = { "headers": { "Content-Type": "application/json" } };
     // this.callpost = { id: "8", nameitem: "abcde", quantity: 12 };
-    this.http.post("https://demoionic2.azurewebsites.net/api/GetUser/ConfirmBorrow/" + this.iditem + "/" + this.username,
+    this.http.post("https://demoionic2.azurewebsites.net/api/History/ConfirmBorrow/" + this.iditem + "/" + this.username,
       option).subscribe((result: any) => {
         this.navCtrl.popToRoot()
         console.log("xxxx" + result);
