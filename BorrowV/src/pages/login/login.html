@@ -15,9 +15,9 @@
 
   <div style="margin-top: 20%">
     <div style="text-align: center">
-      <ion-icon style="font-size: 70px" ios="ios-contact" md="md-contact"></ion-icon>
+      <ion-icon style="font-size: 70px; color: #488aff" ios="ios-contact" md="ios-contact-outline"></ion-icon>
     </div>
-    <div style="font-size: 20px; text-align: center; margin-bottom: 20%"><label>LOGIN</label></div>
+    <div style="font-size: 20px; text-align: center; margin-bottom: 20%; color: #488aff"><label>LOGIN</label></div>
     <form novalidate [formGroup]="signupform">
       <div style="text-align: center">
         <ion-input placeholder="Username" type="text" [(ngModel)]="userData.username" name="input" formControlName="username" [class.error1]="!signupform.controls.username.valid"></ion-input>
