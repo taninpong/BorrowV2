@@ -12,14 +12,14 @@
 
 </ion-header>
 
-<ion-content padding>
-  <ion-list-header style="font-size:18px;" text-center><b>เลือกตู้เก็บของ</b><br><ion-icon style="font-size: 30px;" ios="ios-archive" md="ios-archive-outline"></ion-icon></ion-list-header>
+<ion-content padding style="background-color: #34495E;">
+  <ion-list-header style="font-size:18px;" text-center><b style="color: white;">เลือกตู้เก็บของ</b><br><ion-icon style="font-size: 30px; color: white" ios="ios-archive" md="ios-archive-outline"></ion-icon></ion-list-header>
   <ion-grid>
     <ion-list *ngFor="let data of detaildata">
       <ion-row>
         <ion-col col-12>
           <div style="height: 100%; text-align: center;">
-            <button style=" width: 90%; height:90%" ion-button color="dark" round (click)="manageitem(data.id)">
+            <button style=" width: 90%; height:90%" ion-button color="light" outline (click)="manageitem(data.id)">
             <p>Locker {{data.slotname}}</p>
             </button>
           </div>
