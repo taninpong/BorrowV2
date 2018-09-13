@@ -1,5 +1,5 @@
 page-createitem {
-    .button {
+    /* .button {
         display: inline-block;
         padding: 15px 25px;
         font-size: 24px;
@@ -20,6 +20,19 @@ page-createitem {
         background-color: #3e8e41;
         box-shadow: 0 5px #666;
         transform: translateY(4px);
-      }
+      } */
 
+      page-login {
+        .content input{
+            width: 80%;
+            padding: 10px 5%;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            margin: 10px 0;
+            text-align: center;
+            color: #ddd;
+            
+        }
+
+}
 }
