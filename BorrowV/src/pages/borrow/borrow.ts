@@ -43,8 +43,8 @@ export class BorrowPage {
   borrow(){
     // console.log("data"+JSON.stringify(this.detaildata));
     // https://demoionic2.azurewebsites.net/api/GetUser/BorrowItem?username=username
-    let option = { "headers": { "Content-Type": "application/json" } };                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-    this.http.post("https://demoionic2.azurewebsites.net/api/GetUser/BorrowItem/"+UserLogin.userlogin,
+    let option = { "headers": { "Content-Type": "application/json" } };                           
+    this.http.post("https://demoionic2.azurewebsites.net/api/History/BorrowItem/"+UserLogin.userlogin,
     this.detaildata,
     // item   slotid
     option).subscribe((result: any) => {

@@ -32,7 +32,7 @@ export class HomePage {
 
 
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/ListBorrow/" + this.username)
+    this.http.get("https://demoionic2.azurewebsites.net/api/History/ListBorrow/" + this.username)
       .subscribe((data: any) => {
         this.detaildata = data
          console.log("data" + JSON.stringify(data));

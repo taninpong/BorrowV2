@@ -5,20 +5,15 @@ using System.Threading.Tasks;
 
 namespace WebApi.Model
 {
-    public class History
+    public class HistoryBorrow
     {
         public string Id { get; set; }
         public string Borrowname { get; set; }
         public string SlotName { get; set; }
-        // ชื่อคนคืนกับพยาน
-        public string SendbackUsername { get; set; }
-        public string WitnessSendback { get; set; }
         public string SlotId { get; set; }
         public string WitnessName { get; set; }
         public IEnumerable<Insertitem> Item { get; set; }
         public DateTime? Dateborrowitem { get; set; }
-        public DateTime? Datebackitem { get; set; }
-        // checkคน  ตอนคืน
 
     }
 
