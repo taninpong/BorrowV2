@@ -13,15 +13,18 @@
 </ion-header>
 
 
-<ion-content padding style="background-color: #1C2833;">
+<ion-content padding>
   <br>
+  <div style="text-align: center">
+    <ion-icon style="font-size:80px; color: #488aff;" ios="ios-filing" md="ios-filing-outline"></ion-icon>
+  </div>
   <div>
       <ion-label style="font-size:18px; color: white;" text-center></ion-label>
-      <input style="background-color: #1C2833; width:100%" type="text" [(ngModel)]="mymodel.slotname" name="slotname" placeholder="หมายเลขช่อง" required="null">
+      <input style="width:100%" type="text" [(ngModel)]="mymodel.slotname" name="slotname" placeholder="หมายเลขช่อง" required="null">
   </div>
   <br>
   <div text-center>
-    <button style="width:70%;" ion-button color="secondary" round (click)="addlocker()" class="button">เพิ่มช่อง</button>
+    <button style="width:70%;" ion-button outline (click)="addlocker()" class="button">เพิ่มช่อง</button>
   </div>
   
 
