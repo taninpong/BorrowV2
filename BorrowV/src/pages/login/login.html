@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content padding style="background-color: grey;">
+<ion-content padding style="background-color: #34495E;">
 
   <div style="margin-top: 20%">
     <div style="text-align: center">
@@ -24,7 +24,7 @@
         <ion-input placeholder="Username" type="text" [(ngModel)]="userData.username" name="input" formControlName="username" [class.error1]="!signupform.controls.username.valid"></ion-input>
       </div>
       <div style="margin-top: 30px; text-align: center;">
-        <button style="width: 70%; border: grey" ion-button color="dark" clear [disabled]="signupform.invalid" (click)="login()">Login</button>
+        <button style="width: 70%; border: grey" ion-button color="dark" round [disabled]="signupform.invalid" (click)="login()">Login</button>
       </div>
     </form>
   </div>
