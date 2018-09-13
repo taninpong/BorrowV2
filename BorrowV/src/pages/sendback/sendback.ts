@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { DetailsendbackPage } from '../detailsendback/detailsendback';
 import { HttpClient } from '@angular/common/http';
+import { UserLogin } from '../../app/Model';
 
 /**
  * Generated class for the SendbackPage page.
@@ -21,6 +22,7 @@ export class SendbackPage {
 
   iddata: any;
   detaildata: any;
+  data:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,private barcodeScanner: BarcodeScanner,private http: HttpClient) {
     this.iddata = this.navParams.get("dataid");
     console.log("xxxx"+this.iddata);
@@ -30,45 +32,49 @@ export class SendbackPage {
   //   console.log('ionViewDidLoad SendbackPage');
   // }
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/"+this.iddata)
+    this.http.get("https://demoionic2.azurewebsites.net/api/History/GetBorrow/"+this.iddata)
       .subscribe((data: any) => {
+        this.data = data
         this.detaildata = data.item
-        console.log("xyz"+JSON.stringify(this.detaildata));
+        console.log("Data : "+JSON.stringify(this.data));
+        console.log("Detaildata : "+JSON.stringify(this.detaildata));
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
         });
   }
 
-  scanqr(id){
-    this.navCtrl.push(DetailsendbackPage,{
-      iddata: id
+  scanqr(id){      
+    this.barcodeScanner.scan().then(barcodeData => {
+      var strQr = barcodeData.text;
+      var checkborrow = null;
+      var substrQR = strQr.split("|");
+      console.log("substring : " + substrQR[1]);
+      if (checkborrow = strQr.startsWith("borrow") == true) {
+      } else if (checkborrow = strQr.startsWith("sendback") == true) {
+        let option = { "headers": { "Content-Type": "application/json" } };                           
+        this.http.post("https://demoionic2.azurewebsites.net/api/History/Sendback/"+this.iddata+"/"+UserLogin.userlogin,
+        this.detaildata,
+        option).subscribe((result: any) => {
+          this.navCtrl.push(DetailsendbackPage,{
+            iddata: id
+          });
+          console.log("xxxxxxxxxxx"+this.iddata);
+            console.log("yyyyyyyyyyyy"+JSON.stringify(result));
+            console.log("zzzzzzz"+JSON.stringify(UserLogin.userlogin));    
+          }, error => {
+            console.log("error"+JSON.stringify(error));
+          });
+        //  this.navCtrl.push(DetailsendbackPage, { iditem: substrQR[1] });
+
+      } else if (checkborrow = strQr.startsWith("guarantee") == true) {
+        this.navCtrl.push(DetailsendbackPage);
+        // this.navCtrl.push(ConfirmborrowPage, { iditem: substrQR[1] });
+        console.log("substring ssss: " + substrQR[1]);
+      }
+    }).catch(err => {
+      console.log('Error', err);
     });
-    // this.barcodeScanner.scan().then(barcodeData => {
-    //   //QR : "borrow;f66cd89f-f52c-45fe-ab6e-083078894434"
-    //   var strQr = barcodeData.text;
-    //   var checkborrow = null;
-    //   // // strQr.startsWith("borrow")
-    //   // // var strReturn = strQr.startsWith("return");
-    //   // console.log(strQr);
-    //   //QR : "f66cd89f-f52c-45fe-ab6e-083078894434"
-    //   // var stringQR = barcodeData.text;
-    //   var substrQR = strQr.split("|");
-
-    //   console.log("substring : " + substrQR[1]);
-
-    //   if (checkborrow = strQr.startsWith("borrow") == true) {
-    //     // this.navCtrl.push(BorrowPage, { iditem: substrQR[1] });
-    //   } else if (checkborrow = strQr.startsWith("return") == true) {
-
-    //   } else if (checkborrow = strQr.startsWith("guarantee") == true) {
-    //     this.navCtrl.push(DetailsendbackPage);
-    //     // this.navCtrl.push(ConfirmborrowPage, { iditem: substrQR[1] });
-    //     console.log("substring ssss: " + substrQR[1]);
-    //   }
-    // }).catch(err => {
-    //   console.log('Error', err);
-    // });
     // this.navCtrl.push(HomePage);
   }
 

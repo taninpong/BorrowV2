@@ -27,7 +27,7 @@ export class DetailitemborrowPage {
 
 
   ionViewDidEnter() {
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/" + this.datas)
+    this.http.get("https://demoionic2.azurewebsites.net/api/History/GetBorrow/" + this.datas)
       .subscribe((data: any) => {
         this.dataid = data.id
         this.detaildata = data.item
