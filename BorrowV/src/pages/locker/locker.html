@@ -6,24 +6,21 @@
     <ion-title text-center>Locker</ion-title>
     <ion-buttons right>
       <button ion-fab mini (click)="addlocker()"><ion-icon name="add"></ion-icon></button>
-
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
-
 <ion-content padding>
-  <ion-list-header style="font-size:18px; border: 1px solid #488aff" text-center><b>‡≈◊Õ°µŸÈ‡°Á∫¢Õß</b><br><ion-icon style="font-size: 30px; color: #488aff" ios="ios-archive" md="ios-archive-outline"></ion-icon></ion-list-header><br>
+  <ion-list-header style="font-size:18px; border: 1px solid #488aff" text-center><b>‡∏ï‡∏π‡πâ‡πÄ‡∏Å‡πá‡∏ö‡∏Ç‡∏≠‡∏á</b><br><ion-icon style="font-size: 30px; color: #488aff" ios="ios-archive" md="ios-archive-outline"></ion-icon></ion-list-header><br>
   <ion-grid>
     <ion-list *ngFor="let data of detaildata">
       <ion-row>
         <ion-col col-12>
           <div style="height: 100%; text-align: center;">
             <button style=" width: 90%; height:90%" ion-button outline (click)="manageitem(data.id)">
-            <p style="color: #488aff" >Locker {{data.slotname}}</p>
+              <p style="color: #488aff" >Locker {{data.slotname}}</p>
             </button>
           </div>
-
         </ion-col>
       </ion-row>
     </ion-list>
