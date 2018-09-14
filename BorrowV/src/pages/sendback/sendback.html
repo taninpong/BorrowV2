@@ -24,7 +24,7 @@
                  <p><b>ชื่อ</b></p><br>
                   <ion-list>
                     <ion-item class="item-border" text-center>
-                       <label>{{data.nameitem}} </label>
+                       <ion-input type="text" [(ngModel)]="data.nameitem"></ion-input>
                         </ion-item>
                          </ion-list>
                        </ion-col>
@@ -32,7 +32,7 @@
                     <p><b>จำนวน</b></p><br>
                   <ion-list>
                  <ion-item class="item-border" text-center>
-               <label>{{data.quantity}} </label>
+               <ion-input type="text" [(ngModel)]="data.quantity"></ion-input>
               </ion-item>
             </ion-list>                 
             </ion-col>
