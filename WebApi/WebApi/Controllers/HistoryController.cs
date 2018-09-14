@@ -17,6 +17,7 @@ namespace WebApi.Controllers
         IMongoCollection<HistoryBorrow> Collection;
         IMongoCollection<Slotitem> SlotCollection;
         IMongoCollection<HistorySendBack> SendbackCollection;
+
         public HistoryController()
         {
             db = new MongoClient("mongodb://borrowv:abcd1234@ds243502.mlab.com:43502/borrowv");
@@ -24,6 +25,7 @@ namespace WebApi.Controllers
             Collection = test.GetCollection<HistoryBorrow>("history");
             SlotCollection = test.GetCollection<Slotitem>("Locker");
             SendbackCollection = test.GetCollection<HistorySendBack>("sendback");
+            //UserCollection = test.GetCollection<User>("user");
 
         }
 
@@ -69,6 +71,7 @@ namespace WebApi.Controllers
                 history.WitnessName = witnessname;
                 history.Dateborrowitem = DateTime.UtcNow;
                 Collection.ReplaceOne(it => it.Id == id, history);
+                //UserCollection.Find(x => x.Name == id).FirstOrDefault();
                 var slot = SlotCollection.Find(x => x.Id == history.SlotId).FirstOrDefault();
                 foreach (var item in history.Item)
                 {
@@ -96,52 +99,52 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPost("{id}/{usernamesendback}/{witnessname}")]
-        public bool SendBackItem(string id, string usernamesendback, string witnessname)
-        {
-            try
-            {
-                var history = Collection.Find(x => x.Id == id).FirstOrDefault();
-                //if (!(history.Borrowname == witnessname || history.WitnessName == witnessname || history.Borrowname == usernameborrow || history.WitnessName == usernameborrow))
-                //{
-                //    return false;
-                //}
-                //else 
+        //[HttpPost("{id}/{usernamesendback}/{witnessname}")]
+        //public bool SendBackItem(string id, string usernamesendback, string witnessname)
+        //{
+        //    try
+        //    {
+        //        var history = Collection.Find(x => x.Id == id).FirstOrDefault();
+        //        //if (!(history.Borrowname == witnessname || history.WitnessName == witnessname || history.Borrowname == usernameborrow || history.WitnessName == usernameborrow))
+        //        //{
+        //        //    return false;
+        //        //}
+        //        //else 
 
-                //if (!((history.Borrowname == usernamesendback || history.WitnessName == usernamesendback) && usernamesendback != witnessname))
-                //{
-                //    return false;
-                //}
-                if (history.Borrowname == usernamesendback || history.WitnessName == usernamesendback)
-                {
+        //        //if (!((history.Borrowname == usernamesendback || history.WitnessName == usernamesendback) && usernamesendback != witnessname))
+        //        //{
+        //        //    return false;
+        //        //}
+        //        if (history.Borrowname == usernamesendback || history.WitnessName == usernamesendback)
+        //        {
 
-                    //history.SendbackUsername = usernamesendback;
-                    //history.WitnessSendback = witnessname;
-                    //history.Datebackitem = DateTime.UtcNow;
-                    Collection.ReplaceOne(it => it.Id == id, history);
-                    var slot = SlotCollection.Find(x => x.Id == history.SlotId).FirstOrDefault();
-                    foreach (var item in history.Item)
-                    {
-                        var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
-                        updated.quantity += item.quantity;
-                    }
-                    SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
+        //            //history.SendbackUsername = usernamesendback;
+        //            //history.WitnessSendback = witnessname;
+        //            //history.Datebackitem = DateTime.UtcNow;
+        //            Collection.ReplaceOne(it => it.Id == id, history);
+        //            var slot = SlotCollection.Find(x => x.Id == history.SlotId).FirstOrDefault();
+        //            foreach (var item in history.Item)
+        //            {
+        //                var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
+        //                updated.quantity += item.quantity;
+        //            }
+        //            SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
 
-                    return true;
-                }
-                else if (history.Borrowname != usernamesendback || history.Borrowname != witnessname)
-                {
-                    return false;
-                }
-                return false;
-            }
-            catch (Exception)
-            {
+        //            return true;
+        //        }
+        //        else if (history.Borrowname != usernamesendback || history.Borrowname != witnessname)
+        //        {
+        //            return false;
+        //        }
+        //        return false;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                return false;
-            }
+        //        return false;
+        //    }
 
-        }
+        //}
 
         //[HttpGet]
         //public IEnumerable<History> ListHistory()
@@ -161,54 +164,95 @@ namespace WebApi.Controllers
             {
                 return null;
             }
-            else { 
-            var sendback = new HistorySendBack()
+            else
             {
-                Id = Guid.NewGuid().ToString(),
-                SendbackUsername = username,
-                SlotName = xxx.SlotName,
-                Item = items,
-                SlotId = xxx.SlotId
-            };
-            SendbackCollection.InsertOne(sendback);
-            return sendback;
+                var sendback = new HistorySendBack()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    SendbackUsername = username,
+                    SlotName = xxx.SlotName,
+                    Item = items,
+                    SlotId = xxx.SlotId
+                };
+                SendbackCollection.InsertOne(sendback);
+                return sendback;
+            }
         }
+
+        //[HttpPost("{id}/{witnessname}")]
+        //public bool ConfirmSendback(string id, string witnessname)
+        //{
+        //    try
+        //    {
+
+        //        var sendback = Collection.Find(x => x.Id == id).FirstOrDefault();
+        //        if (sendback.Borrowname == witnessname)
+        //        {
+        //            return false;
+        //        }
+
+        //        sendback.WitnessName = witnessname;
+        //        sendback.Dateborrowitem = DateTime.UtcNow;
+        //        Collection.ReplaceOne(it => it.Id == id, sendback);
+        //        var slot = SlotCollection.Find(x => x.Id == sendback.SlotId).FirstOrDefault();
+        //        foreach (var item in sendback.Item)
+        //        {
+        //            var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
+        //            updated.quantity -= item.quantity;
+        //        }
+        //        SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
+
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        return false;
+        //    }
+
+        //}
+
+        [HttpGet("{id}")]
+        public HistorySendBack GetSendback(string id)
+        {
+            var data = SendbackCollection.Find(x => (x.Id == id)).FirstOrDefault();
+            return data;
+        }
+
+        [HttpPost("{id}/{witnessname}")]
+        public bool ConfirmSendback(string id, string witnessname)
+        {
+            try
+            {
+
+                var sendback = SendbackCollection.Find(x => x.Id == id).FirstOrDefault();
+                if (sendback.SendbackUsername == witnessname)
+                {
+                    return false;
+                }
+
+                sendback.WitnessSendback = witnessname;
+                sendback.Datebackitem = DateTime.UtcNow;
+                SendbackCollection.ReplaceOne(it => it.Id == id, sendback);
+                var slot = SlotCollection.Find(x => x.Id == sendback.SlotId).FirstOrDefault();
+                foreach (var item in sendback.Item)
+                {
+                    var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
+                    updated.quantity += item.quantity;
+                }
+                SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
+                //Collection.ReplaceOne(it => it.Item);
+
+                
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
+
     }
-
-    //[HttpPost("{id}/{witnessname}")]
-    //public bool ConfirmSendback(string id, string witnessname)
-    //{
-    //    try
-    //    {
-
-    //        var sendback = Collection.Find(x => x.Id == id).FirstOrDefault();
-    //        if (sendback.Borrowname == witnessname)
-    //        {
-    //            return false;
-    //        }
-
-    //        sendback.WitnessName = witnessname;
-    //        sendback.Dateborrowitem = DateTime.UtcNow;
-    //        Collection.ReplaceOne(it => it.Id == id, sendback);
-    //        var slot = SlotCollection.Find(x => x.Id == sendback.SlotId).FirstOrDefault();
-    //        foreach (var item in sendback.Item)
-    //        {
-    //            var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
-    //            updated.quantity -= item.quantity;
-    //        }
-    //        SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
-
-    //        return true;
-    //    }
-    //    catch (Exception)
-    //    {
-
-    //        return false;
-    //    }
-
-    //}
-
-
-
-}
 }
