@@ -9,8 +9,6 @@ namespace WebApi.Model
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string SlotId { get; set; }
-        public string SlotName { get; set; }
-        public IEnumerable<Insertitem> Item{ get; set; }
+        public IEnumerable<Slotitem> slotitems{ get; set; }
     }
 }
