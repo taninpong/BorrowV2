@@ -17,7 +17,6 @@ namespace WebApi.Controllers
         IMongoCollection<HistoryBorrow> Collection;
         IMongoCollection<Slotitem> SlotCollection;
         IMongoCollection<HistorySendBack> SendbackCollection;
-        IMongoCollection<User> UserCollection;
 
         public HistoryController()
         {
@@ -26,7 +25,7 @@ namespace WebApi.Controllers
             Collection = test.GetCollection<HistoryBorrow>("history");
             SlotCollection = test.GetCollection<Slotitem>("Locker");
             SendbackCollection = test.GetCollection<HistorySendBack>("sendback");
-            UserCollection = test.GetCollection<User>("user");
+            //UserCollection = test.GetCollection<User>("user");
 
         }
 
@@ -242,6 +241,7 @@ namespace WebApi.Controllers
                     updated.quantity += item.quantity;
                 }
                 SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
+                //Collection.ReplaceOne(it => it.Item);
 
                 
                 return true;

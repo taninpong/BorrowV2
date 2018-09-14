@@ -5,6 +5,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { DetailsendbackPage } from '../detailsendback/detailsendback';
 import { HttpClient } from '@angular/common/http';
 import { UserLogin } from '../../app/Model';
+import { CompileMetadataResolver } from '@angular/compiler';
 
 /**
  * Generated class for the SendbackPage page.
@@ -23,6 +24,7 @@ export class SendbackPage {
   iddata: any;
   detaildata: any;
   data: any;
+  idlocker: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner, private http: HttpClient) {
     this.iddata = this.navParams.get("dataid");
     console.log("xxxx" + this.iddata);
@@ -36,8 +38,10 @@ export class SendbackPage {
       .subscribe((data: any) => {
         this.data = data
         this.detaildata = data.item
+        this.idlocker = this.data.slotId
         console.log("Data : " + JSON.stringify(this.data));
         console.log("Detaildata : " + JSON.stringify(this.detaildata));
+        console.log("IDLocker : " + JSON.stringify(this.idlocker));
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
@@ -52,19 +56,34 @@ export class SendbackPage {
       // console.log("substring : " + substrQR[1]);
       if (checkborrow = strQr.startsWith("borrow") == true) {
       } else if (checkborrow = strQr.startsWith("sendback") == true) {
-        let option = { "headers": { "Content-Type": "application/json" } };
-        this.http.post("https://demoionic2.azurewebsites.net/api/History/Sendback/" + this.iddata + "/" + UserLogin.userlogin,
-          this.detaildata,
-          option).subscribe((result: any) => {
-            this.navCtrl.push(DetailsendbackPage, {
-              iddata: result
+        console.log("SSS :" + substrQR[1]);
+        if (this.idlocker == substrQR[1]) {
+          let option = { "headers": { "Content-Type": "application/json" } };
+          this.http.post("https://demoionic2.azurewebsites.net/api/History/Sendback/" + this.iddata + "/" + UserLogin.userlogin,
+            this.detaildata,
+            option).subscribe((result: any) => {
+              this.navCtrl.push(DetailsendbackPage, {
+                iddata: result
+              });
+            }, error => {
+              console.log("error" + JSON.stringify(error));
             });
-            // console.log("xxxxxxxxxxx" + this.iddata);
-            // console.log("yyyyyyyyyyyy" + JSON.stringify(result));
-            // console.log("zzzzzzz" + JSON.stringify(UserLogin.userlogin));
-          }, error => {
-            console.log("error" + JSON.stringify(error));
-          });
+
+        }
+
+        // let option = { "headers": { "Content-Type": "application/json" } };
+        // this.http.post("https://demoionic2.azurewebsites.net/api/History/Sendback/" + this.iddata + "/" + UserLogin.userlogin,
+        //   this.detaildata,
+        //   option).subscribe((result: any) => {
+        //     this.navCtrl.push(DetailsendbackPage, {
+        //       iddata: result
+        //     });
+        // console.log("xxxxxxxxxxx" + this.iddata);
+        // console.log("yyyyyyyyyyyy" + JSON.stringify(result));
+        //   // console.log("zzzzzzz" + JSON.stringify(UserLogin.userlogin));
+        // }, error => {
+        //   console.log("error" + JSON.stringify(error));
+        // });
         // this.navCtrl.push(DetailsendbackPage, { iditem: substrQR[1] });
         // console.log("Checkidnaja : " + this.iddata);
 

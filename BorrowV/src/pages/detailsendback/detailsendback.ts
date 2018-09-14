@@ -25,16 +25,16 @@ export class DetailsendbackPage {
     this.genQrCode = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=guaranteereturn|"+this.iddata.id;
   }
 
-  // ionViewDidEnter() {
-  //   this.http.get("https://demoionic2.azurewebsites.net/api/History/GetBorrow/"+this.iddata)
-  //     .subscribe((data: any) => {
-  //       this.detaildata = data.item
-  //       console.log("item in payan : "+JSON.stringify(this.detaildata));
-  //     },
-  //       error => {
-  //         alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
-  //       });
-  // }
+  ionViewDidEnter() {
+    this.http.get("https://demoionic2.azurewebsites.net/api/History/GetSendback/"+this.iddata.id)
+      .subscribe((data: any) => {
+        this.detaildata = data.item
+        console.log("item in payan : "+JSON.stringify(this.detaildata));
+      },
+        error => {
+          alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
+        });
+  }
 
   
 
