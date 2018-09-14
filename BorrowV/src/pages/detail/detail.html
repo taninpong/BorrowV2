@@ -5,15 +5,12 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title text-center>คุณจะแก้ไขหรือลบ</ion-title>
+    <ion-title text-center></ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
+<ion-list-header style="font-size:18px;" text-center><b>จัดการสิ่งของในตู้</b><br><ion-icon style="font-size: 30px;" ios="ios-construct" md="md-construct"></ion-icon></ion-list-header>
 <ion-grid>
   <ion-row>
   <ion-col col-8>
@@ -37,5 +34,4 @@
     <!-- <ion-label style="font-size:18px;" text-center><b>{{dataitems.total}}</b></ion-label> -->
   <button ion-button block (click)="Edit(dataitems.id)" round>Edit</button>
   <button ion-button block color="danger" (click)="delete()" round>Delete</button>
-
 </ion-content>
