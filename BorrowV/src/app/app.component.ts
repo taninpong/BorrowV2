@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { BorrowPage } from '../pages/borrow/borrow';
 import { ConfirmborrowPage } from '../pages/confirmborrow/confirmborrow';
 import { ManageitemPage } from '../pages/manageitem/manageitem';
+import { ConfirmreturnPage } from '../pages/confirmreturn/confirmreturn';
 
 @Component({
   templateUrl: 'app.html'
