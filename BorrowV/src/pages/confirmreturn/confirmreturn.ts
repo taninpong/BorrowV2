@@ -48,11 +48,12 @@ export class ConfirmreturnPage {
   }
   payan() {
     let option = { "headers": { "Content-Type": "application/json" } };
-    // this.callpost = { id: "8", nameitem: "abcde", quantity: 12 };
     this.http.post("https://demoionic2.azurewebsites.net/api/History/ConfirmSendback/"+this.iditem+"/"+this.sendbackusername,
       option).subscribe((result: any) => {
         this.navCtrl.popToRoot()
-        console.log("xxxx" + result);
+        console.log("xxxx : " + result);
+        console.log("yyyy : " + this.iditem);
+        console.log("zzzz : " + this.sendbackusername);
       }, error => {
         console.log("error"+JSON.stringify(error));
       });

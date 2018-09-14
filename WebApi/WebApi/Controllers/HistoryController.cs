@@ -33,10 +33,11 @@ namespace WebApi.Controllers
         // GET api/values
         [HttpGet("{username}")]
         public IEnumerable<HistoryBorrow> ListBorrow(string username)
-        {
+        {                       
             var data = Collection.Find(x => (x.Borrowname == username || x.WitnessName == username)
-                && x.Dateborrowitem != null
+                && (x.Dateborrowitem != null   ) && x.Item.Any(it => it.quantity > 0)
                 ).ToList();
+            var xxx = SendbackCollection.Find(x => x.Datebackitem == null).ToList();
             return data;
         }
 
@@ -172,7 +173,8 @@ namespace WebApi.Controllers
                     SendbackUsername = username,
                     SlotName = xxx.SlotName,
                     Item = items,
-                    SlotId = xxx.SlotId
+                    SlotId = xxx.SlotId,
+                    BorrowHistoryid = xxx.Id
                 };
                 SendbackCollection.InsertOne(sendback);
                 return sendback;
@@ -226,25 +228,33 @@ namespace WebApi.Controllers
             {
 
                 var sendback = SendbackCollection.Find(x => x.Id == id).FirstOrDefault();
-                if (sendback.SendbackUsername == witnessname)
+                if (sendback.SendbackUsername == witnessname || sendback.WitnessSendback == witnessname)
                 {
-                    return false;
-                }
 
-                sendback.WitnessSendback = witnessname;
-                sendback.Datebackitem = DateTime.UtcNow;
-                SendbackCollection.ReplaceOne(it => it.Id == id, sendback);
-                var slot = SlotCollection.Find(x => x.Id == sendback.SlotId).FirstOrDefault();
-                foreach (var item in sendback.Item)
-                {
-                    var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
-                    updated.quantity += item.quantity;
-                }
-                SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
-                //Collection.ReplaceOne(it => it.Item);
 
-                
+                    sendback.WitnessSendback = witnessname;
+                    sendback.Datebackitem = DateTime.UtcNow;
+                    SendbackCollection.ReplaceOne(it => it.Id == id, sendback);
+                    var slot = SlotCollection.Find(x => x.Id == sendback.SlotId).FirstOrDefault();
+
+                    foreach (var item in sendback.Item)
+                    {
+                        var updated = slot.Item.FirstOrDefault(i => i.Id == item.Id);
+                        updated.quantity += item.quantity;
+                    }
+
+                    var borrow = Collection.Find(x => x.Id == sendback.BorrowHistoryid).FirstOrDefault();
+                    foreach (var item in sendback.Item)
+                    {
+                        var updated = borrow.Item.FirstOrDefault(i => i.Id == item.Id);
+                        updated.quantity -= item.quantity;
+                    }
+                    SlotCollection.ReplaceOne(it => it.Id == slot.Id, slot);
+                    Collection.ReplaceOne(it => it.Id == borrow.Id, borrow);
+
                 return true;
+                }
+                return false;
             }
             catch (Exception)
             {

@@ -14,7 +14,6 @@ namespace WebApi.Model
         public string WitnessName { get; set; }
         public IEnumerable<Insertitem> Item { get; set; }
         public DateTime? Dateborrowitem { get; set; }
-
     }
 
 }

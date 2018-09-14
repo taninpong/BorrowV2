@@ -18,10 +18,13 @@ export class DetailsendbackPage {
   iddata: any;
   detaildata: any;
   genQrCode: string;
+  idsendback: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient) {
     this.iddata = navParams.get("iddata");
+    this.idsendback = this.iddata.id;
     console.log("DDDDD+"+JSON.stringify(this.iddata));
+    console.log("idsendback+"+JSON.stringify(this.idsendback));
     this.genQrCode = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=guaranteereturn|"+this.iddata.id;
   }
 

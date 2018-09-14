@@ -20,14 +20,6 @@
         </ion-row>
       </ion-item>
     </ion-grid>
-
-    <!-- <ion-item style="background-color: gray">
-      <button (click)="manageitem()">
-        <ion-icon name="ionic" item-start></ion-icon>
-        <label>Locker A 02</label>
-        <ion-icon name="archive"></ion-icon>
-      </button>
-    </ion-item> -->
   </ion-list>
 
   <!-- 
@@ -40,12 +32,16 @@
   <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
 
   <ion-footer >
-    <ion-toolbar >
-      <div text-center >
-        <button style="background-color: red; height: 65px" ion-button round ion-button (click)="barcodescan()">
-          <ion-icon ios="ios-qr-scanner" md="ios-qr-scanner-outline"></ion-icon>
-        </button>
-      </div>
+    <ion-toolbar>
+      <ion-title>
+
+
+        <div text-center>
+          <button style="background-color: red; height: 65px" ion-button round ion-button (click)="barcodescan()">
+            <ion-icon ios="ios-qr-scanner" md="ios-qr-scanner-outline"></ion-icon>
+          </button>
+        </div>
+      </ion-title>
     </ion-toolbar>
   </ion-footer>
 
