@@ -14,21 +14,23 @@
 
 
 <ion-content padding>
+  <br>
+  <div style="text-align: center; font-size: 60px; color: #488aff">
+    <ion-icon ios="ios-tennisball" md="ios-tennisball-outline"></ion-icon>
+  </div>
+  <br>
   <ion-grid>
     <ion-row>
-        <ion-list>
-            <ion-item>
-              <ion-label fixed style="color: black" >ชื่อสิ่งของ</ion-label>
-              <ion-input class="content input" type="text" [(ngModel)]="itemname" name="name" ></ion-input>
-              <!--  -->
-            </ion-item>
-            <ion-item>
-              <ion-label fixed style="color: black" >จำนวน</ion-label>
-              <ion-input type="number" min="0" [(ngModel)]="quantity" > </ion-input>
-              <!-- [(ngModel)]="data.quantity" -->
-            </ion-item>
-          </ion-list>
+      <ion-col col-9>
+        <ion-input placeholder="ชื่อของ" class="content input" type="text" [(ngModel)]="itemname" name="name"></ion-input>
+      </ion-col>
+      <ion-col col-3>
+        <ion-input placeholder="จำนวน" type="number" min="0" [(ngModel)]="quantity"> </ion-input>
+      </ion-col>
     </ion-row>
-    <button ion-button block (click)="createitem()" class="button">เพิ่มของ</button>
+    <br>
+    <div style="text-align: center">
+      <button style="width: 70%" ion-button (click)="createitem()" outline>เพิ่มของ</button>
+    </div>
   </ion-grid>
 </ion-content>
