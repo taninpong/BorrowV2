@@ -20,10 +20,12 @@ export class ConfirmreturnPage {
   iditem: string;
   detailitem: any;
   detaildata: any;
+  sendbackusername: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
     this.iditem = navParams.data.iditem;
     console.log("DataSend :" + JSON.stringify(this.iditem));
+    console.log("username :" + JSON.stringify(this.username));
   }
 
   // ionViewDidLoad() {
@@ -31,12 +33,14 @@ export class ConfirmreturnPage {
   // }
   ionViewDidEnter() {
     this.username = UserLogin.userlogin;
-    this.http.get("https://demoionic2.azurewebsites.net/api/GetUser/GetBorrow/" + this.iditem)
+    this.http.get("https://demoionic2.azurewebsites.net/api/History/GetSendback/" + this.iditem)
       .subscribe((data: any) => {
         this.detailitem = data.item
         this.detaildata = data.borrowname
+        this.sendbackusername = data.sendbackUsername
         console.log("Datanaja : " +JSON.stringify(data));
         console.log("Username : "  +this.username);
+        console.log("sendbackusername : "  +this.sendbackusername);
       },
         error => {
           alert("Error: " + error + "\nError message: " + error.message + "\nError result: " + error.error)
@@ -45,7 +49,7 @@ export class ConfirmreturnPage {
   payan() {
     let option = { "headers": { "Content-Type": "application/json" } };
     // this.callpost = { id: "8", nameitem: "abcde", quantity: 12 };
-    this.http.post("https://demoionic2.azurewebsites.net/api/GetUser/SendBackItem/"+this.iditem+"/"+this.detaildata+"/"+this.username,
+    this.http.post("https://demoionic2.azurewebsites.net/api/History/ConfirmSendback/"+this.iditem+"/"+this.sendbackusername,
       option).subscribe((result: any) => {
         this.navCtrl.popToRoot()
         console.log("xxxx" + result);
