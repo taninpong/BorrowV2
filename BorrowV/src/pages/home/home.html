@@ -10,15 +10,15 @@
 <ion-content padding>
   <ion-list>
     <ion-grid>
-      <ion-item *ngFor="let data of detaildata">
-        <ion-row>
+        <ion-row *ngFor="let data of detaildata">
           <ion-col col-12>
-            <button style="width: 100%; height:30px" (click)="DetailborrowPage(data.id)">
+            <br>
+            <button ion-button outline style="width: 100%; height:60px" (click)="DetailborrowPage(data.id)">
               <label>Slot {{data.slotName}}</label>
             </button>
+            <br>
           </ion-col>
         </ion-row>
-      </ion-item>
     </ion-grid>
   </ion-list>
 
@@ -32,16 +32,12 @@
   <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
 
   <ion-footer >
-    <ion-toolbar>
-      <ion-title>
-
-
-        <div text-center>
-          <button style="background-color: red; height: 65px" ion-button round ion-button (click)="barcodescan()">
-            <ion-icon ios="ios-qr-scanner" md="ios-qr-scanner-outline"></ion-icon>
-          </button>
-        </div>
-      </ion-title>
+    <ion-toolbar >
+      <div text-center >
+        <button style="height: 67px" color="danger" ion-button round ion-button  (click)="barcodescan()">
+          <ion-icon ios="ios-qr-scanner" md="ios-qr-scanner-outline"></ion-icon>
+        </button>
+      </div>
     </ion-toolbar>
   </ion-footer>
 

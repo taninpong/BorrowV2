@@ -6,48 +6,61 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title text-center>detailitemborrow</ion-title>
+        <ion-buttons right>
+          <button ion-fab mini (click)="sendback(dataid)"><ion-icon name="md-sync"></ion-icon></button>
+        </ion-buttons>
+      </ion-navbar>
+
+  <!--<ion-navbar>
     <ion-title>detailitemborrow</ion-title>
   </ion-navbar>
-
   <ion-fab top right edge style="margin-top: 25px">
-    <button ion-fab mini color="secondary" ><ion-icon name="add"></ion-icon></button>
-  <ion-fab-list>
-  <button ion-fab (click)="sendback(dataid)"><label>คืน</label></button>
-    <!--  <button ion-fab (click)="deleteitem()"><label>ลบ</label></button>
+    <button ion-fab mini color="secondary"><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab (click)="sendback(dataid)"><label>คืน</label></button>
+        <button ion-fab (click)="deleteitem()"><label>ลบ</label></button>
     <button ion-fab (click)="edititem()"><label>แก้ไข</label></button>
-    <button ion-fab (click)="tranferitem()"><label>ย้าย</label></button>  -->
-  </ion-fab-list>
-</ion-fab>
+    <button ion-fab (click)="tranferitem()"><label>ย้าย</label></button>  
+    </ion-fab-list>
+  </ion-fab> -->
 </ion-header>
 
 
 <ion-content padding>
-<ion-list-header style="font-size:18px;" text-center><b>ข้อมูลการยืม</b><br><ion-icon style="font-size: 30px;" ios="ios-briefcase" md="md-briefcase"></ion-icon></ion-list-header>
-    <ion-list>
-        <ion-grid>
-          <ion-item *ngFor="let data of detaildata">
-            <ion-row>
-              <ion-col col-8 text-center>
-                 <!-- <button style="width: 100%; height:30px" (click)="DetailborrowPage(data.id)"> -->
-                 <p><b>ชื่อ</b></p><br>
-                  <ion-list>
-                    <ion-item class="item-border" text-center>
-                     <label>{{data.nameitem}}</label>
-                       </ion-item>
-                         </ion-list>
-                           </ion-col>
-                           <ion-col col-4 text-center>
-                          <p><b>จำนวน</b></p><br>
-                        <ion-list>
-                      <ion-item class="item-border" text-center>
-                     <label>{{data.quantity}}</label>
-                    </ion-item>
-                    </ion-list>
-              </ion-col>
-            <!-- </button> -->
-        </ion-row>
-      </ion-item>
-    </ion-grid>
-  </ion-list>
+
+  <div style="text-align: center; border: 1px solid #488aff">
+    <br>
+    <label style="color: #7F8C8D;" text-center><b>ข้อมูลการยืม</b><br><br></label>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3 text-center>
+      </ion-col>
+      <ion-col col-6 text-center>
+        <p>ชื่อ</p>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <p>จำนวน</p>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let data of detaildata">
+      <ion-col col-3 text-center>
+        <ion-icon style="font-size: 40px; color: #488aff;" ios="ios-briefcase" md="md-briefcase"></ion-icon>
+      </ion-col>
+      <ion-col col-6 text-center>
+        <!-- <button style="width: 100%; height:30px" (click)="DetailborrowPage(data.id)"> -->
+        <p>{{data.nameitem}}</p>
+      </ion-col>
+      <ion-col col-3 text-center>
+        <p>{{data.quantity}}</p>
+      </ion-col>
+      <!-- </button> -->
+    </ion-row>
+  </ion-grid>
 </ion-content>
